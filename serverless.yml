@@ -1,0 +1,18 @@
+service: api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  iam:
+    role: arn:aws:iam::447891120606:role/LabRole
+
+functions:
+  alumnos_listar:
+    handler: ListarAlumnos.lambda_handler
+    events:
+      - http:
+          path: /alumnos/listar
+          method: post
+          cors: true
+          integration: lambda
